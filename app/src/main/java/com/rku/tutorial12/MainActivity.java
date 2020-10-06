@@ -1,10 +1,13 @@
 package com.rku.tutorial12;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     RequestQueue requestQueue;
     JsonArrayRequest jsonArrayRequest;
+    CustomAdapter customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,DividerItemDecoration.VERTICAL));
 
         requestNetworkCall();
     }
@@ -53,13 +59,17 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         MyUtil.jsonArray = response;
+                        customAdapter = new CustomAdapter(MyUtil.jsonArray);
+                        recyclerView.setAdapter(customAdapter);
+                        customAdapter.notifyDataSetChanged();
 
+                        Log.i("Response", String.valueOf(response));
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Log.e("Error",error.toString());
                     }
                 }
         );
