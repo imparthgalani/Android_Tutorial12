@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     JsonArrayRequest jsonArrayRequest;
     CustomAdapter customAdapter;
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recyclerView);
+        dialog = new ProgressDialog(MainActivity.this);
 
 
         // use this setting to improve performance if you know that changes
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,DividerItemDecoration.VERTICAL));
 
         requestNetworkCall();
+
     }
 
     private void requestNetworkCall() {
@@ -63,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         recyclerView.setAdapter(customAdapter);
                         customAdapter.notifyDataSetChanged();
 
+                        if (dialog.isShowing())dialog.dismiss();
                         Log.i("Response", String.valueOf(response));
                     }
                 },
@@ -73,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+        dialog.show();
         requestQueue.add(jsonArrayRequest);
     }
 }

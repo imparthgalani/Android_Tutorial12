@@ -36,6 +36,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.UserViewHo
             holder.txtId.setText(jsonObject.getString("id"));
             holder.txtUsername.setText(jsonObject.getString("name"));
             holder.txtEmail.setText(jsonObject.getString("email"));
+
+/*          holder.txtUsername.setText(jsonObject.getString("title"));
+            holder.txtEmail.setText(jsonObject.getString("completed"));*/
         } catch (JSONException e) {
             e.printStackTrace();
         }
