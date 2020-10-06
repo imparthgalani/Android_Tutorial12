@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this,DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(MainActivity.this, DividerItemDecoration.VERTICAL));
 
         requestNetworkCall();
 
@@ -67,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
                         recyclerView.setAdapter(customAdapter);
                         customAdapter.notifyDataSetChanged();
 
-                        if (dialog.isShowing())dialog.dismiss();
+                        if (dialog.isShowing()) dialog.dismiss();
                         Log.i("Response", String.valueOf(response));
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("Error",error.toString());
+                        Log.e("Error", error.toString());
                     }
                 }
         );
