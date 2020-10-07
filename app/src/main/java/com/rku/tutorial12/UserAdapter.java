@@ -12,30 +12,30 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.UserViewHolder> {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {
 
     private JSONArray jsonArray;
 
-    public CustomAdapter(JSONArray jsonArray) {
+    public UserAdapter(JSONArray jsonArray) {
         this.jsonArray = jsonArray;
     }
 
     @NonNull
     @Override
-    public CustomAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public UserAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View listItem = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item, parent, false);
-        return new UserViewHolder(listItem);
+        return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         try {
             JSONObject jsonObject = jsonArray.getJSONObject(position);
-            holder.txtId.setText(jsonObject.getString("id"));
-            holder.txtUsername.setText(jsonObject.getString("name"));
+            holder.txtName.setText(jsonObject.getString("name"));
             holder.txtEmail.setText(jsonObject.getString("email"));
+            holder.txtPhone.setText(jsonObject.getString("phone"));
 
 /*          holder.txtUsername.setText(jsonObject.getString("title"));
             holder.txtEmail.setText(jsonObject.getString("completed"));*/
@@ -49,15 +49,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.UserViewHo
         return jsonArray.length();
     }
 
-    public static class UserViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtId, txtUsername, txtEmail;
+        TextView txtName, txtEmail, txtPhone;
 
-        public UserViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtId = (TextView) itemView.findViewById(R.id.txtId);
-            txtUsername = (TextView) itemView.findViewById(R.id.txtUsername);
+            txtName = (TextView) itemView.findViewById(R.id.txtName);
             txtEmail = (TextView) itemView.findViewById(R.id.txtEmail);
+            txtPhone = (TextView) itemView.findViewById(R.id.txtPhone);
         }
     }
 }

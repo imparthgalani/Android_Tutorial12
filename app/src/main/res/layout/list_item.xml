@@ -2,39 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@android:color/holo_green_light"
+    android:orientation="vertical"
+    android:paddingStart="10dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="5dp">
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txtId"
-            android:layout_width="50dp"
+            android:id="@+id/txtEmail"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/holo_green_light"
-            android:gravity="center"
-            android:text="Id"
-            android:textSize="24sp" />
+            android:autoLink="all"
+            android:gravity="left"
+            android:text="pgalani193@rku.ac.in"
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/txtUsername"
-            android:layout_width="match_parent"
+            android:id="@+id/txtPhone"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="8"
-            android:text="TextView"
-            android:textSize="24sp" />
+            android:layout_weight="1"
+            android:autoLink="all"
+            android:gravity="right"
+            android:text="+91 8200033848"
+            android:textSize="16sp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="51dp"
-        android:text="TextView"
-        android:textSize="18sp" />
 
 </LinearLayout>
